@@ -113,7 +113,7 @@ function Player({ accessToken }: PlayerProps) {
     player.togglePlay();
   };
 
-  const handlePickMusic = (musicUri) => {
+  const handlePickMusic = (musicUri, deviceId) => {
     if (musicUri && deviceId) {
       // Function to start playback using Spotify Web API
       const startPlayback = async (deviceId: string) => {
@@ -135,6 +135,10 @@ function Player({ accessToken }: PlayerProps) {
     }
   };
 
+  React.useEffect(() => {
+    handlePickMusic(currentUri, deviceId);
+  }, [currentUri, deviceId]);
+
   if (qrReader) {
     return (
       <QRCodeScanner
@@ -144,7 +148,6 @@ function Player({ accessToken }: PlayerProps) {
             const trackId = /track\/(\w{1,})/.exec(code)?.[1];
             if (trackId) {
               setCurrentUri(`spotify:track:${trackId}`);
-              handlePickMusic(`spotify:track:${trackId}`);
             }
           }
         }}
