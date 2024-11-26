@@ -9,7 +9,8 @@ const REDIRECT_URI = window.IS_SERVE
   : "https://spotify-controller-d1fc0.web.app"; // Replace with your redirect URI
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
-const SCOPE = "user-read-private user-read-email streaming"; // Add required scopes
+const SCOPE =
+  "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state"; // Add required scopes
 
 const App = () => {
   const [token, setToken] = React.useState(() =>
