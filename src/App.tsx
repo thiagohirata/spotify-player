@@ -4,7 +4,9 @@ import Player from "./Player";
 
 // Spotify OAuth configuration
 const CLIENT_ID = "7d969b2eef6e4c14be8fa6981d47de08"; // Replace with your Spotify Client ID
-const REDIRECT_URI = "https://localhost:3000"; // Replace with your redirect URI
+const REDIRECT_URI = window.IS_SERVE
+  ? "https://localhost:3000"
+  : "https://spotify-controller-d1fc0.web.app"; // Replace with your redirect URI
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 const SCOPE = "user-read-private user-read-email streaming"; // Add required scopes

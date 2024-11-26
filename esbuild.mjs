@@ -20,7 +20,9 @@ const buildContext = async ({ production, editor }) =>
   await esbuild.context({
     entryPoints: [path.resolve(__dirname, "./src/index.html")].filter(Boolean),
     bundle: true,
-    outdir: path.resolve(__dirname, "./out"),
+    outdir: production
+      ? path.resolve(__dirname, "./build")
+      : path.resolve(__dirname, "./out"),
     platform: "browser",
     assetNames: "[name]-[hash]",
     chunkNames: "[name]-[hash]",

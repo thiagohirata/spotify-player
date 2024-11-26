@@ -6,7 +6,9 @@
   "scripts": {
     "serve": "node ./esbuild.mjs serve",
     "build": "node ./esbuild.mjs build",
-    "build:standalone": "rimraf out && node ./esbuild.mjs build --editor false && node ./scripts/zip out standalone.zip"
+    "build:standalone": "rimraf out && node ./esbuild.mjs build --editor false && node ./scripts/zip out standalone.zip",
+    "firebase": "firebase",
+    "firebase:deploy": "firebase deploy"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,7 @@
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@mui/material": "^6.1.8",
+    "@zxing/browser": "^0.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -22,6 +25,7 @@
     "@chialab/esbuild-plugin-html": "^0.18.2",
     "esbuild": "^0.24.0",
     "esbuild-style-plugin": "^1.6.3",
+    "firebase-tools": "^13.27.0",
     "nanoid": "^5.0.8",
     "yargs": "^17.7.2"
   }
