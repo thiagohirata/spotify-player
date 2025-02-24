@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import Player from "./Player";
+import PlaylistPlayer from "./PlaylistPlayer";
 
 // Spotify OAuth configuration
 const CLIENT_ID = "7d969b2eef6e4c14be8fa6981d47de08"; // Replace with your Spotify Client ID
@@ -10,7 +10,7 @@ const REDIRECT_URI = window.IS_SERVE
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 const SCOPE =
-  "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state"; // Add required scopes
+  "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state playlist-read-private playlist-read-collaborative"; // Add required scopes
 
 const App = () => {
   const [token, setToken] = React.useState(() =>
@@ -58,7 +58,7 @@ const App = () => {
             Logout
           </Button>
         </div>
-        <Player accessToken={token} />
+        <PlaylistPlayer accessToken={token} />
       </div>
     );
   }

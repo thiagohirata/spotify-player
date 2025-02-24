@@ -1,6 +1,13 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { Alert, MenuItem, Select, Stack } from "@mui/material";
+import {
+  Alert,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+} from "@mui/material";
 import QRCodeScanner from "./QRCodeScanner";
 
 interface PlayerProps {
@@ -176,13 +183,21 @@ function Player({ accessToken }: PlayerProps) {
           </Alert>
         )}
 
-        <Select value={deviceId} onChange={(e) => setDeviceId(e.target.value)}>
-          {devices?.map((device) => (
-            <MenuItem key={device.id} value={device.id}>
-              {device.name} ({device.type})
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl fullWidth>
+          <InputLabel id="player-select-label">Player</InputLabel>
+          <Select
+            labelId="player-select-label"
+            value={deviceId}
+            onChange={(e) => setDeviceId(e.target.value)}
+            label="Player"
+          >
+            {devices?.map((device) => (
+              <MenuItem key={device.id} value={device.id}>
+                {device.name} ({device.type})
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <Button
           variant="contained"
