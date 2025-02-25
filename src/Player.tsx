@@ -168,7 +168,7 @@ function Player({ accessToken }: PlayerProps) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        height: "100dvh",
       }}
     >
       <Stack spacing={2} sx={{ width: 300 }}>

@@ -195,7 +195,7 @@ function Player({ accessToken }: PlayerProps) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          height: "100dvh",
         }}
       >
         <Stack spacing={2} width={300}>
@@ -253,21 +253,28 @@ const PlaylistPicker = ({ accessToken, setPlaylist, setError }) => {
     (async () => {
       const playlistId = e.target.playlistId.value;
       try {
-        const response = await fetch(
-          `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-          {
+        let next = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+        const responses: PlaylistTracks[] = [];
+        while (next) {
+          const response = await fetch(next, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
+          });
+          const data = await response.json();
+          if (data?.error?.message) {
+            setError((x) => x.concat(data?.error?.message));
+            return;
           }
-        );
-        const data = await response.json();
-        if (data?.error?.message) {
-          setError((x) => x.concat(data?.error?.message));
-          return;
+          responses.push(data);
+          next = data.next;
         }
-        setPlaylist(data);
-        console.log(data);
+        if (responses?.length > 0) {
+          setPlaylist({
+            ...responses[0],
+            items: responses.map((r) => r.items).flat(1),
+          });
+        }
       } catch (error) {
         setError((x) => x.concat("Failed to fetch playlist: " + error.message));
       }

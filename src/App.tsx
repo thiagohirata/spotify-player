@@ -69,7 +69,7 @@ const App = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        height: "100dvh",
       }}
     >
       <Button variant="contained" color="primary" onClick={handleLogin}>
